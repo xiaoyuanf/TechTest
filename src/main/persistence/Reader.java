@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Reader {
-    // a reader that reads csv file and returns a list of String[]
+    // EFFECTS: reads csv file and returns a list of String[]
     public static List<String[]> readCSV(File file) throws IOException {
         List<String[]> res = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -27,6 +27,7 @@ public class Reader {
         return res;
     }
 
+    //EFFECTS: reads a json file and returns the root of the tree in the file
     public static TreeNode readJSON(File file) throws FileNotFoundException {
         BufferedReader br = new BufferedReader(new FileReader(file));
         Gson gson = new Gson();

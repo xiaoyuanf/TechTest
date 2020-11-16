@@ -2,10 +2,10 @@ package main.model;
 
 public class TreeUtil {
     /* the method recursively update total value of all nodes from department to type of input record
-     * @param root the tree root
-     * @param r the fee record
+     * @param root: the root node of the tree
+     * @param r: the fee record
      * @param path: department, category, subcategory and type of the record
-     * e.g. ['Support', 'Tier 2', 'Cat1', 'TypeB']
+     * e.g. {"Support", "Tier 2", "Cat1", "TypeB"}
      */
     public void updateTree(TreeNode root, Record r, String[] path, int start) {
         String dep = r.getDepartment();
@@ -50,6 +50,7 @@ public class TreeUtil {
         }
     }
 
+    // EFFECTS: recursively prints fees of each node on a given path
     public void queryTree(TreeNode root, String[] path, int start) {
         if (start < path.length) {
             String subtypes = path[start];

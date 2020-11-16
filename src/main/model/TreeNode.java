@@ -41,6 +41,7 @@ public class TreeNode implements Saveable {
         this.total = total;
     }
 
+    //EFFECTS: writes a treeNode to json
     @Override
     public void save(PrintWriter printWriter, TreeNode node) {
         Gson gson = new Gson();

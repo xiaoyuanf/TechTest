@@ -23,6 +23,7 @@ public class MainApp {
         runApp();
     }
 
+    // EFFECTS: processes user input on the main menu level
     private void runApp() {
         boolean keepGoing = true;
         String command = null;
@@ -42,6 +43,8 @@ public class MainApp {
 
         System.out.println("See you!");
     }
+
+    // EFFECTS: processes user command
     private void processCommand(String command) {
         if (command.equals("a")) {
             creatTree();
@@ -53,6 +56,7 @@ public class MainApp {
         }
     }
 
+    // EFFECTS: displays main menu of options to user
     public void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\tA -> read raw_fee.csv");
@@ -60,6 +64,7 @@ public class MainApp {
         System.out.println("\tQ -> quit");
     }
 
+    //EFFECTS: reads the csv file and create a tree with total fees at each node
     private void creatTree() {
         try {
             records = Reader.readCSV(new File("./data/raw_fees.csv"));
@@ -72,6 +77,7 @@ public class MainApp {
         }
     }
 
+    //EFFECTS: saves the tree as a json file
     private void saveTree() {
         try {
             Writer writer = new Writer(new File("./data/output.txt"));
@@ -82,6 +88,7 @@ public class MainApp {
         }
     }
 
+    // EFFECTS: makes query of fees of nodes on a given path
     private void queryTree() {
         System.out.print("Enter query path (eg. 'Support/Tier 2/Cat1'): ");
         String s = getPath();
@@ -96,6 +103,7 @@ public class MainApp {
         util.queryTree(root, path, 0);
     }
 
+    // EFFECTS: gets user input of path
     private String getPath() {
         String path = "";
         while (path.length() == 0) {
