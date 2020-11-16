@@ -16,8 +16,9 @@ import java.util.Scanner;
 public class MainApp {
     private Scanner input;
     private List<String[]> records = null;
+    
     private TreeNode root = new TreeNode("root");
-    private TreeUtil util = new TreeUtil();
+    //private TreeUtil util = new TreeUtil();
 
     public MainApp() {
         runApp();
@@ -73,7 +74,7 @@ public class MainApp {
         }
         for (int i = 1; i < records.size(); i++) {
             Record r = new Record(records.get(i));
-            util.updateTree(root, r, new String[]{r.getDepartment(), r.getCategory(), r.getSubCategory(), r.getType()}, 0);
+            TreeUtil.updateTree(root, r, new String[]{r.getDepartment(), r.getCategory(), r.getSubCategory(), r.getType()}, 0);
         }
     }
 
@@ -100,7 +101,7 @@ public class MainApp {
             e.printStackTrace();
         }
         String path[] = s.split("/");
-        util.queryTree(root, path, 0);
+        TreeUtil.queryTree(root, path, 0);
     }
 
     // EFFECTS: gets user input of path

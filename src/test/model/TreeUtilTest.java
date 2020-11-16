@@ -20,7 +20,6 @@ public class TreeUtilTest {
     private TreeNode root;
     private static final String TEST_CSV_FILE = "./data/test_fees.csv";
     private List<String[]> records;
-    private TreeUtil util;
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
@@ -38,7 +37,6 @@ public class TreeUtilTest {
     @BeforeEach
     public void runBefore() {
         System.setOut(new PrintStream(outputStreamCaptor));
-        util = new TreeUtil();
         root = new TreeNode("root");
         try {
             records = Reader.readCSV(new File(TEST_CSV_FILE));
@@ -51,13 +49,13 @@ public class TreeUtilTest {
         Record testRecord1 = new Record(records.get(1));
         Record testRecord2 = new Record(records.get(2));
         Record testRecord6 = new Record(records.get(6));
-        util.updateTree(root, testRecord1, new String[]{testRecord1.getDepartment(),
+        TreeUtil.updateTree(root, testRecord1, new String[]{testRecord1.getDepartment(),
                 testRecord1.getCategory(), testRecord1.getSubCategory(), testRecord1.getType()}, 0);
         assertEquals(root.getChildren().get(0).getTotal(), 396.96, 0.0001);
-        util.updateTree(root, testRecord2, new String[]{testRecord2.getDepartment(),
+        TreeUtil.updateTree(root, testRecord2, new String[]{testRecord2.getDepartment(),
                 testRecord2.getCategory(), testRecord2.getSubCategory(), testRecord2.getType()}, 0);
         assertEquals(root.getChildren().get(0).getTotal(), 703.14, 0.0001);
-        util.updateTree(root, testRecord6, new String[]{testRecord6.getDepartment(),
+        TreeUtil.updateTree(root, testRecord6, new String[]{testRecord6.getDepartment(),
                 testRecord6.getCategory(), testRecord6.getSubCategory(), testRecord6.getType()}, 0);
         assertEquals(root.getChildren().get(1).getTotal(), 227.447, 0.0001);
     }
@@ -66,10 +64,10 @@ public class TreeUtilTest {
     public void testQueryTree() {
         for (int i = 1; i < records.size(); i++) {
             Record r = new Record(records.get(i));
-            util.updateTree(root, r, new String[]{r.getDepartment(),
+            TreeUtil.updateTree(root, r, new String[]{r.getDepartment(),
                     r.getCategory(), r.getSubCategory(), r.getType()}, 0);
         }
-        util.queryTree(root, new String[]{"Support", "Tier 2"}, 0);
+        TreeUtil.queryTree(root, new String[]{"Support", "Tier 2"}, 0);
         assertEquals("Support: 718.675\n" + "Tier 2: 718.675",
                 outputStreamCaptor.toString().trim());
     }

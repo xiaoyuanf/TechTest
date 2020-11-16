@@ -7,7 +7,7 @@ public class TreeUtil {
      * @param path: department, category, subcategory and type of the record
      * e.g. {"Support", "Tier 2", "Cat1", "TypeB"}
      */
-    public void updateTree(TreeNode root, Record r, String[] path, int start) {
+    public static void updateTree(TreeNode root, Record r, String[] path, int start) {
         String dep = r.getDepartment();
         double surcharge = 0;
         switch (dep) {
@@ -51,7 +51,7 @@ public class TreeUtil {
     }
 
     // EFFECTS: recursively prints fees of each node on a given path
-    public void queryTree(TreeNode root, String[] path, int start) {
+    public static void queryTree(TreeNode root, String[] path, int start) {
         if (start < path.length) {
             String subtypes = path[start];
             TreeNode n = null;
